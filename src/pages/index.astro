@@ -1,8 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
+import TechStack from '../components/home/TechStack.astro';
+import LatestPosts from '../components/home/LatestPosts.astro';
 import ScrollReveal from '../components/ui/ScrollReveal.astro';
 ---
 <BaseLayout title="Home">
   <Hero />
+  <ScrollReveal>
+    <TechStack />
+  </ScrollReveal>
+  <ScrollReveal>
+    <LatestPosts />
+  </ScrollReveal>
 </BaseLayout>

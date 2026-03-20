@@ -1,0 +1,77 @@
+---
+const techs = [
+  { name: 'JavaScript', color: '#f7df1e' },
+  { name: 'TypeScript', color: '#3178c6' },
+  { name: 'React', color: '#61dafb' },
+  { name: 'Vue', color: '#4fc08d' },
+  { name: 'Astro', color: '#ff5d01' },
+  { name: 'Node.js', color: '#339933' },
+  { name: 'Python', color: '#3776ab' },
+  { name: 'Git', color: '#f05032' },
+  { name: 'Docker', color: '#2496ed' },
+  { name: 'CSS', color: '#1572b6' },
+];
+---
+<section class="tech-stack">
+  <div class="container">
+    <div class="tech-grid">
+      {techs.map(tech => (
+        <div class="tech-item" style={`--brand-color: ${tech.color}`}>
+          <span class="tech-icon">{tech.name.slice(0, 2)}</span>
+          <span class="tech-name">{tech.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech-stack {
+    padding: 6rem 0;
+  }
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: default;
+  }
+  .tech-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    background: var(--card-bg);
+    transition: color 0.3s, border-color 0.3s, transform 0.2s;
+    filter: grayscale(100%);
+  }
+  .tech-item:hover .tech-icon {
+    color: var(--brand-color);
+    border-color: var(--brand-color);
+    filter: grayscale(0%);
+    transform: translateY(-2px);
+  }
+  .tech-name {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
+  @media (max-width: 640px) {
+    .tech-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+  }
+</style>
