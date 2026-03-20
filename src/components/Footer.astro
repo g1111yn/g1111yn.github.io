@@ -1,0 +1,45 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container footer-inner">
+    <p class="copyright">&copy; {year} Blog. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="/blog">Blog</a>
+      <a href="/about">About</a>
+      <a href="/rss.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .copyright {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .footer-links a {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+  @media (max-width: 640px) {
+    .footer-inner {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+</style>

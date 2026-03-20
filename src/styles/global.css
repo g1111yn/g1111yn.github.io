@@ -1,0 +1,114 @@
+/* ========== Reset ========== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========== Theme Tokens ========== */
+:root {
+  --bg: #fafafa;
+  --text: #171717;
+  --text-secondary: #737373;
+  --accent: #e85d04;
+  --border: #e5e5e5;
+  --card-bg: #ffffff;
+
+  --font-body: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-code: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+
+  --max-width: 1200px;
+  --header-height: 64px;
+}
+
+:root.dark {
+  --bg: #111111;
+  --text: #ededed;
+  --text-secondary: #737373;
+  --accent: #fb923c;
+  --border: #262626;
+  --card-bg: #1a1a1a;
+}
+
+/* ========== Base ========== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background-color: var(--bg);
+  line-height: 1.8;
+  transition: background-color 0.3s, color 0.3s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ========== Typography ========== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.375rem; }
+
+code {
+  font-family: var(--font-code);
+  font-size: 0.9em;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.15em 0.35em;
+}
+
+pre {
+  font-family: var(--font-code);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  padding: 1.25rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ========== Utilities ========== */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 640px) {
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.375rem; }
+  h3 { font-size: 1.125rem; }
+}
