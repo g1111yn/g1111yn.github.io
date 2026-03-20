@@ -1,0 +1,78 @@
+---
+---
+<section class="hero" id="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-spotlight" id="hero-spotlight"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Your Name Here</h1>
+    <p class="hero-subtitle">写代码，也写生活。</p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.4;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  .hero-spotlight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(600px circle at 50% 50%, var(--accent), transparent 60%);
+    opacity: 0.06;
+    transition: opacity 0.3s;
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    animation: fadeIn 0.8s ease both;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  const hero = document.getElementById('hero');
+  const spotlight = document.getElementById('hero-spotlight');
+
+  if (hero && spotlight && !('ontouchstart' in window)) {
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      spotlight.style.background = `radial-gradient(600px circle at ${x}px ${y}px, var(--accent), transparent 60%)`;
+    });
+  }
+</script>
