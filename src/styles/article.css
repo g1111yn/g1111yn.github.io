@@ -1,0 +1,249 @@
+/* ========== Article Prose Styles ========== */
+/* Optimized for reading experience */
+
+.prose {
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--text);
+  letter-spacing: 0.01em;
+  word-break: break-word;
+}
+
+/* Headings with # prefix markers */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  position: relative;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.prose h1::before,
+.prose h2::before,
+.prose h3::before {
+  color: var(--primary);
+  font-weight: 400;
+  opacity: 0.5;
+  margin-right: 0.4em;
+  font-family: var(--font-code);
+  font-size: 0.75em;
+}
+
+.prose h1::before { content: '#'; }
+.prose h2::before { content: '##'; }
+.prose h3::before { content: '###'; }
+
+.prose h1 {
+  font-size: 1.65rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose h2 {
+  font-size: 1.4rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+html.dark .prose h2 {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.prose h3 {
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose h4 {
+  font-size: 1.08rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Paragraphs - comfortable reading spacing */
+.prose p {
+  margin-bottom: 1.4rem;
+}
+
+/* Links */
+.prose a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: rgba(53, 191, 171, 0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s, color 0.2s;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Lists */
+.prose ul {
+  list-style-type: square;
+  margin-bottom: 1.4rem;
+  padding-left: 1.5rem;
+}
+
+.prose ol {
+  list-style-type: lower-roman;
+  margin-bottom: 1.4rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.4rem;
+  line-height: 1.9;
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-top: 0.3rem;
+  margin-bottom: 0;
+}
+
+/* Blockquotes - stylish with brand color */
+.prose blockquote {
+  border-left: 4px solid var(--primary);
+  background: rgba(53, 191, 171, 0.06);
+  padding: 1.1rem 1.4rem;
+  margin: 1.6rem 0;
+  border-radius: 0 14px 14px 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+html.dark .prose blockquote {
+  background: rgba(53, 191, 171, 0.08);
+}
+
+.prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Code blocks */
+.prose pre {
+  margin: 1.6rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  background: #1e1e2e;
+  color: #cdd6f4;
+  padding: 1.25rem;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+html.dark .prose pre {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.prose :not(pre) > code {
+  background: rgba(53, 191, 171, 0.1);
+  border: 1px solid rgba(53, 191, 171, 0.2);
+  color: var(--primary);
+  border-radius: 5px;
+  padding: 0.15em 0.45em;
+  font-size: 0.88em;
+  font-weight: 500;
+}
+
+/* Images */
+.prose img {
+  border-radius: 14px;
+  margin: 1.6rem auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  display: block;
+}
+
+/* Tables */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.6rem 0;
+  font-size: 0.92rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.prose th,
+.prose td {
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+html.dark .prose th,
+html.dark .prose td {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.prose th {
+  background: rgba(53, 191, 171, 0.08);
+  font-weight: 600;
+}
+
+.prose tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+html.dark .prose tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Horizontal Rules */
+.prose hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(53, 191, 171, 0.3), transparent);
+  margin: 2.5rem 0;
+}
+
+/* Strong & Em */
+.prose strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.prose em {
+  font-style: italic;
+}
+
+/* Details/Summary */
+.prose details {
+  margin: 1.2rem 0;
+  padding: 0.85rem 1.1rem;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+html.dark .prose details {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.prose summary {
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+}
+
+/* First heading shouldn't have huge top margin */
+.prose > h1:first-child,
+.prose > h2:first-child,
+.prose > h3:first-child {
+  margin-top: 0;
+}
+
+/* Selection highlight */
+.prose ::selection {
+  background: rgba(53, 191, 171, 0.2);
+}

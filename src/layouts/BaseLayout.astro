@@ -1,15 +1,16 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import BubbleBackground from '../components/BubbleBackground.astro';
+import Nav from '../components/NavCard.astro';
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  isHome?: boolean;
 }
 
-const { title, description = 'My personal blog', ogImage } = Astro.props;
+const { title, description = 'My personal blog', ogImage, isHome = false } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -23,6 +24,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Google Fonts: Averia Gruesa Libre -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Gruesa+Libre&display=swap" rel="stylesheet" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -39,11 +45,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </script>
   </head>
   <body>
-    <Header />
-    <main>
-      <slot />
-    </main>
-    <Footer />
+    <BubbleBackground />
+
+    <div class="page-wrapper">
+      <Nav />
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="site-footer">
+        <p>&copy; {new Date().getFullYear()} Sleepy Blog. Built with Astro.</p>
+      </footer>
+    </div>
 
     <!-- Theme toggle logic -->
     <script is:inline>
@@ -54,3 +68,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </script>
   </body>
 </html>
+
+<style>
+  .page-wrapper {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  .site-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    opacity: 0.6;
+  }
+</style>

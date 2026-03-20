@@ -1,0 +1,27 @@
+---
+// BubbleBackground.astro - Canvas-based animated bubble background
+---
+
+<canvas id="bubble-canvas" aria-hidden="true"></canvas>
+
+<style>
+  #bubble-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(50px);
+  }
+</style>
+
+<script>
+  import { initBubbles } from '../scripts/bubbles';
+
+  const canvas = document.getElementById('bubble-canvas') as HTMLCanvasElement;
+  if (canvas) {
+    initBubbles(canvas);
+  }
+</script>

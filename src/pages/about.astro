@@ -1,40 +1,368 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
-<BaseLayout title="About" description="About me">
-  <div class="container about-page">
-    <h1>About</h1>
-    <div class="about-content">
-      <p>Hi, I'm <strong>Your Name</strong>.</p>
-      <p>写代码，也写生活。这里记录技术思考和日常碎片。</p>
+<BaseLayout title="About" description="About Gao Yinan">
+  <div class="about-page">
 
-      <h2>Links</h2>
-      <ul>
-        <li><a href="https://github.com/USERNAME" target="_blank" rel="noopener">GitHub</a></li>
-      </ul>
+    <!-- ===== Profile Header ===== -->
+    <div class="about-hero card card-animate card-delay-0">
+      <div class="hero-profile">
+        <img src={`${base}photo.PNG`} alt="Gao Yinan" class="hero-avatar" />
+        <div class="hero-info">
+          <h1>Gao Yinan</h1>
+          <p class="hero-tagline">show me the code</p>
+          <div class="hero-tags">
+            <span class="hero-tag">写代码的</span>
+            <span class="hero-tag">瞎折腾的</span>
+            <span class="hero-tag">还活着的</span>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- ===== 关于这里 ===== -->
+    <div class="about-card card card-animate card-delay-1">
+      <div class="section-icon">🏠</div>
+      <h2>这是什么地方</h2>
+      <p>
+        这里是我在互联网上的一小块自留地。没有 KPI，没有审核，想写啥写啥。
+      </p>
+      <p>
+        可能是某个深夜调了三小时 bug 之后的碎碎念，可能是突然想通了某个技术原理的兴奋记录，
+        也可能只是吃到了一顿好吃的想发出来馋馋路过的人。
+      </p>
+      <p>
+        总之，这里既不是简历，也不是技术文档。这里是我自己的地盘，我说了算。
+      </p>
+    </div>
+
+    <!-- ===== 关于我 ===== -->
+    <div class="about-card card card-animate card-delay-2">
+      <div class="section-icon">🧑‍💻</div>
+      <h2>关于我</h2>
+      <p>
+        CS 本科在读，日常在写代码和被代码写之间反复横跳。
+      </p>
+      <p>
+        前后端都碰，数据库也搞，Docker 也玩，偶尔还用 LaTeX 排个论文假装自己很学术。
+        Vim 用户，不是因为多高效，纯粹是退出不了之后斯德哥尔摩了。
+      </p>
+      <p>
+        除了写代码，也是一个普通大学生 —— 会熬夜，会摸鱼，会在 DDL 前三天突然获得超能力。
+        相信生活不只有绩点和 offer，虽然这两样确实也挺重要的。
+      </p>
+    </div>
+
+    <!-- ===== 一些碎碎念 ===== -->
+    <div class="about-card card card-animate card-delay-3">
+      <div class="section-icon">💬</div>
+      <h2>一些碎碎念</h2>
+      <div class="thoughts">
+        <div class="thought-item">
+          <span class="thought-mark">"</span>
+          <p>写代码最爽的不是代码跑通的那一刻，是别人问你「这怎么实现的」然后你能讲明白的那一刻。</p>
+        </div>
+        <div class="thought-item">
+          <span class="thought-mark">"</span>
+          <p>技术博客写给未来的自己看的，因为三个月后我肯定忘了自己当初怎么想的。</p>
+        </div>
+        <div class="thought-item">
+          <span class="thought-mark">"</span>
+          <p>学一门新技术最快的方式就是用它做一个项目，第二快的方式是看别人用它做的项目然后说「我也行」。</p>
+        </div>
+        <div class="thought-item">
+          <span class="thought-mark">"</span>
+          <p>有时候觉得编程就像搭乐高 —— 很好玩，直到你发现少了一块关键的零件。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 折腾过的东西 ===== -->
+    <div class="about-card card card-animate card-delay-4">
+      <div class="section-icon">🔧</div>
+      <h2>平时在折腾啥</h2>
+      <div class="hobby-grid">
+        <div class="hobby-item">
+          <span class="hobby-emoji">⌨️</span>
+          <div>
+            <strong>全栈开发</strong>
+            <p>前端后端一把梭，从页面到数据库，享受把一个想法从零变成能跑的东西的感觉</p>
+          </div>
+        </div>
+        <div class="hobby-item">
+          <span class="hobby-emoji">🐧</span>
+          <div>
+            <strong>折腾 Linux</strong>
+            <p>配环境、写脚本、搞服务器，虽然经常把系统搞崩，但这不就是乐趣所在吗</p>
+          </div>
+        </div>
+        <div class="hobby-item">
+          <span class="hobby-emoji">📝</span>
+          <div>
+            <strong>写东西</strong>
+            <p>技术笔记、生活随笔、偶尔的吐槽，把脑子里的东西倒出来会让人清醒很多</p>
+          </div>
+        </div>
+        <div class="hobby-item">
+          <span class="hobby-emoji">🌍</span>
+          <div>
+            <strong>探索新技术</strong>
+            <p>看到新玩意就想试试，哪怕最后只学了个 Hello World 也算没白来</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 一句话 ===== -->
+    <div class="about-card card card-animate card-delay-5">
+      <div class="section-icon">🌱</div>
+      <h2>最后</h2>
+      <p>
+        还在成长中，还在路上。这个博客会陪着我一起变好（大概）。
+      </p>
+      <p>
+        如果你恰好路过，欢迎随便看看。觉得有意思可以留个言，觉得写得烂也可以留个言 —— 反正我不一定改。
+      </p>
+      <blockquote class="about-quote">
+        "Talk is cheap. Show me the code." — Linus Torvalds<br/>
+        <span class="quote-sub">（所以别光看了，去写代码吧）</span>
+      </blockquote>
+    </div>
+
   </div>
 </BaseLayout>
 
-<style>
+<style is:global>
   .about-page {
-    padding: 3rem 1.5rem;
     max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
-  .about-page h1 {
-    margin-bottom: 2rem;
+
+  /* ===== Hero Profile ===== */
+  .about-hero {
+    padding: 32px;
   }
-  .about-content p {
-    margin-bottom: 1.25rem;
+
+  .hero-profile {
+    display: flex;
+    align-items: center;
+    gap: 24px;
   }
-  .about-content h2 {
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
+
+  .hero-avatar {
+    width: 80px !important;
+    height: 80px !important;
+    max-width: 80px !important;
+    max-height: 80px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 6px 20px rgba(53, 191, 171, 0.2);
+    border: 3px solid rgba(53, 191, 171, 0.2);
   }
-  .about-content ul {
-    padding-left: 1.5rem;
+
+  .hero-info h1 {
+    font-size: 1.6rem;
+    font-family: var(--font-display);
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2px;
   }
-  .about-content li {
-    margin-bottom: 0.5rem;
+
+  .hero-tagline {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-family: var(--font-code);
+    margin-bottom: 10px;
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .hero-tag {
+    font-size: 0.68rem;
+    padding: 3px 10px;
+    border-radius: 10px;
+    background: rgba(53, 191, 171, 0.08);
+    color: var(--primary);
+    font-weight: 500;
+  }
+
+  /* ===== Content Cards ===== */
+  .about-card {
+    padding: 28px 32px;
+  }
+
+  .section-icon {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+  }
+
+  .about-card h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .about-card p {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+  }
+
+  .about-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ===== Thoughts / Quotes ===== */
+  .thoughts {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .thought-item {
+    display: flex;
+    gap: 8px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  html.dark .thought-item {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .thought-item:hover {
+    transform: translateX(4px);
+    background: rgba(53, 191, 171, 0.05);
+  }
+
+  .thought-mark {
+    font-size: 1.8rem;
+    font-family: var(--font-display);
+    color: var(--primary);
+    opacity: 0.4;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: -2px;
+  }
+
+  .thought-item p {
+    font-size: 0.86rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+
+  /* ===== Hobby Grid ===== */
+  .hobby-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hobby-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s, background 0.2s;
+    align-items: flex-start;
+  }
+
+  html.dark .hobby-item {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .hobby-item:hover {
+    transform: translateY(-2px);
+    background: rgba(53, 191, 171, 0.05);
+  }
+
+  .hobby-emoji {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .hobby-item strong {
+    font-size: 0.88rem;
+    color: var(--text);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .hobby-item p {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+
+  /* ===== About Quote ===== */
+  .about-quote {
+    border-left: 3px solid var(--primary);
+    padding: 14px 18px;
+    margin-top: 16px;
+    border-radius: 0 12px 12px 0;
+    background: rgba(53, 191, 171, 0.05);
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  html.dark .about-quote {
+    background: rgba(53, 191, 171, 0.08);
+  }
+
+  .quote-sub {
+    font-size: 0.78rem;
+    opacity: 0.6;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 640px) {
+    .about-page {
+      padding: 0 16px 40px;
+    }
+
+    .about-hero,
+    .about-card {
+      padding: 22px 20px;
+      border-radius: 24px;
+    }
+
+    .hero-profile {
+      gap: 16px;
+    }
+
+    .hero-avatar {
+      width: 64px !important;
+      height: 64px !important;
+      max-width: 64px !important;
+      max-height: 64px !important;
+    }
+
+    .hero-info h1 {
+      font-size: 1.3rem;
+    }
   }
 </style>

@@ -7,29 +7,57 @@
   box-sizing: border-box;
 }
 
-/* ========== Theme Tokens ========== */
+/* ========== Design Tokens (Light) ========== */
 :root {
-  --bg: #fafafa;
-  --text: #171717;
-  --text-secondary: #737373;
-  --accent: #e85d04;
-  --border: #e5e5e5;
-  --card-bg: #ffffff;
+  /* Brand Colors */
+  --primary: #35bfab;
+  --secondary: #1fc9e7;
+  --bg: #eeeeee;
+  --text: #334f52;
+  --text-secondary: #5a7a7d;
 
+  /* Card System */
+  --card-bg: #ffffff66;
+  --card-border: rgba(255, 255, 255, 0.8);
+  --card-shadow: inset 0 0 8px rgba(255, 255, 255, 0.5);
+  --card-radius: 40px;
+  --card-blur: blur(4px);
+
+  /* Article Card */
+  --bg-article: #ffffffcc;
+
+  /* Nav */
+  --nav-bg: rgba(238, 238, 238, 0.7);
+  --nav-border: rgba(0, 0, 0, 0.06);
+  --nav-hover: rgba(53, 191, 171, 0.1);
+
+  /* Fonts */
   --font-body: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-display: "Averia Gruesa Libre", cursive;
   --font-code: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 
+  /* Layout */
   --max-width: 1200px;
-  --header-height: 64px;
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, var(--primary), var(--secondary));
 }
 
+/* ========== Dark Theme ========== */
 :root.dark {
-  --bg: #111111;
-  --text: #ededed;
-  --text-secondary: #737373;
-  --accent: #fb923c;
-  --border: #262626;
-  --card-bg: #1a1a1a;
+  --bg: #1a1a2e;
+  --text: #e0e0e0;
+  --text-secondary: #8a9a9c;
+
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-shadow: inset 0 0 8px rgba(255, 255, 255, 0.03);
+
+  --bg-article: rgba(30, 30, 50, 0.85);
+
+  --nav-bg: rgba(26, 26, 46, 0.75);
+  --nav-border: rgba(255, 255, 255, 0.06);
+  --nav-hover: rgba(53, 191, 171, 0.15);
 }
 
 /* ========== Base ========== */
@@ -42,9 +70,11 @@ body {
   color: var(--text);
   background-color: var(--bg);
   line-height: 1.8;
-  transition: background-color 0.3s, color 0.3s;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 a {
@@ -54,12 +84,11 @@ a {
 }
 
 a:hover {
-  color: var(--accent);
+  color: var(--primary);
 }
 
 img {
   max-width: 100%;
-  height: auto;
   display: block;
 }
 
@@ -77,8 +106,8 @@ h3 { font-size: 1.375rem; }
 code {
   font-family: var(--font-code);
   font-size: 0.9em;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 4px;
   padding: 0.15em 0.35em;
 }
@@ -88,9 +117,9 @@ pre {
   font-size: 0.9rem;
   line-height: 1.6;
   padding: 1.25rem;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow-x: auto;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 pre code {
@@ -98,6 +127,62 @@ pre code {
   border: none;
   padding: 0;
 }
+
+/* ========== Card System ========== */
+.card {
+  background: var(--card-bg);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+.card-rounded {
+  border-radius: var(--card-radius);
+  corner-shape: squircle;
+}
+
+/* ========== Gradient Utilities ========== */
+.text-linear {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-linear {
+  background: var(--gradient-brand);
+}
+
+/* ========== Card Entrance Animation ========== */
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.card-animate {
+  animation: card-enter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Stagger delays */
+.card-delay-0 { animation-delay: 0ms; }
+.card-delay-1 { animation-delay: 100ms; }
+.card-delay-2 { animation-delay: 200ms; }
+.card-delay-3 { animation-delay: 300ms; }
+.card-delay-4 { animation-delay: 400ms; }
+.card-delay-5 { animation-delay: 500ms; }
+.card-delay-6 { animation-delay: 600ms; }
+.card-delay-7 { animation-delay: 700ms; }
+.card-delay-8 { animation-delay: 800ms; }
+.card-delay-9 { animation-delay: 900ms; }
 
 /* ========== Utilities ========== */
 .container {

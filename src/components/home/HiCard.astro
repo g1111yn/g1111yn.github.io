@@ -1,0 +1,250 @@
+---
+// HiCard.astro - Profile card: left=avatar+info, right=terminal style
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="hi-card-inner">
+  <!-- Left: Avatar + Name + Bio (clickable → About) -->
+  <a href={`${base}about/`} class="hi-left hi-link">
+    <div class="hi-avatar">
+      <img src={`${base}photo.PNG`} alt="Gao Yinan" class="hi-avatar-img" />
+    </div>
+    <div class="hi-info">
+      <div class="hi-greeting" id="hi-greeting">Hi there</div>
+      <div class="hi-name">
+        <span class="text-linear">Gao Yinan</span>
+      </div>
+      <div class="hi-bio">show me the code</div>
+    </div>
+  </a>
+
+  <!-- Right: Terminal style block -->
+  <div class="hi-right">
+    <div class="hi-terminal">
+      <div class="terminal-dots">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-line">
+          <span class="t-prompt">$</span>
+          <span class="t-cmd">whoami</span>
+        </div>
+        <div class="terminal-line t-output">Full-stack Developer</div>
+        <div class="terminal-line">
+          <span class="t-prompt">$</span>
+          <span class="t-cmd">uptime</span>
+        </div>
+        <div class="terminal-line t-output" id="hi-uptime">coding since forever</div>
+        <div class="terminal-line">
+          <span class="t-prompt">$</span>
+          <span class="t-cursor">_</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Greeting
+  const greetingEl = document.getElementById('hi-greeting');
+  if (greetingEl) {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) greetingEl.textContent = 'Good Morning';
+    else if (hour >= 12 && hour < 17) greetingEl.textContent = 'Good Afternoon';
+    else if (hour >= 17 && hour < 21) greetingEl.textContent = 'Good Evening';
+    else greetingEl.textContent = 'Good Night';
+  }
+
+  // Uptime: show current date
+  const uptimeEl = document.getElementById('hi-uptime');
+  if (uptimeEl) {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+    uptimeEl.textContent = `${dateStr} ${timeStr}`;
+  }
+</script>
+
+<style>
+  .hi-card-inner {
+    padding: 28px;
+    display: flex;
+    gap: 24px;
+    height: 100%;
+    align-items: center;
+  }
+
+  /* Left side */
+  .hi-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .hi-link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+  }
+
+  .hi-link:hover {
+    transform: translateY(-2px);
+    color: inherit;
+  }
+
+  .hi-link:hover .hi-avatar {
+    box-shadow: 0 8px 28px rgba(53, 191, 171, 0.35);
+  }
+
+  .hi-link:hover .text-linear {
+    filter: brightness(1.1);
+  }
+
+  .hi-avatar {
+    width: 88px;
+    height: 88px;
+    min-width: 88px;
+    min-height: 88px;
+    max-width: 88px;
+    max-height: 88px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(53, 191, 171, 0.2);
+    flex-shrink: 0;
+  }
+
+  .hi-avatar-img {
+    width: 88px !important;
+    height: 88px !important;
+    max-width: 88px !important;
+    max-height: 88px !important;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hi-info {
+    text-align: center;
+  }
+
+  .hi-greeting {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+  }
+
+  .hi-name {
+    font-size: 1.2rem;
+    font-weight: 800;
+    font-family: var(--font-display);
+    line-height: 1.3;
+  }
+
+  .hi-bio {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    font-family: var(--font-code);
+    margin-top: 2px;
+  }
+
+  /* Right side - Terminal */
+  .hi-right {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hi-terminal {
+    background: #1e1e2e;
+    border-radius: 14px;
+    overflow: hidden;
+    font-family: var(--font-code);
+    font-size: 0.75rem;
+    line-height: 1.7;
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+    padding: 10px 14px 0;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot-red { background: #ff5f57; }
+  .dot-yellow { background: #febc2e; }
+  .dot-green { background: #28c840; }
+
+  .terminal-body {
+    padding: 10px 14px 14px;
+  }
+
+  .terminal-line {
+    color: #cdd6f4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .t-prompt {
+    color: #a6e3a1;
+    margin-right: 6px;
+  }
+
+  .t-cmd {
+    color: #89b4fa;
+  }
+
+  .t-output {
+    color: #bac2de;
+    padding-left: 2px;
+  }
+
+  .t-cursor {
+    color: #a6e3a1;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* Mobile: stack vertically */
+  @media (max-width: 640px) {
+    .hi-card-inner {
+      flex-direction: column;
+      padding: 24px 20px;
+      gap: 16px;
+    }
+
+    .hi-left {
+      flex-direction: row;
+      gap: 16px;
+    }
+
+    .hi-avatar {
+      width: 64px;
+      height: 64px;
+      min-width: 64px;
+      min-height: 64px;
+      max-width: 64px;
+      max-height: 64px;
+    }
+    .hi-avatar .hi-avatar-img {
+      width: 64px !important;
+      height: 64px !important;
+      max-width: 64px !important;
+      max-height: 64px !important;
+    }
+
+    .hi-info {
+      text-align: left;
+    }
+  }
+</style>

@@ -1,36 +1,60 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="404 - Not Found">
-  <div class="container not-found">
-    <span class="not-found-code">404</span>
-    <p>Page not found.</p>
-    <a href="/">Back to home &rarr;</a>
+  <div class="not-found-page">
+    <div class="not-found-card card card-animate card-delay-0">
+      <span class="not-found-code text-linear">404</span>
+      <p>Page not found.</p>
+      <a href={base} class="back-link">Back to home &rarr;</a>
+    </div>
   </div>
 </BaseLayout>
 
 <style>
-  .not-found {
+  .not-found-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-height: 60vh;
+    padding: 24px;
+  }
+
+  .not-found-card {
+    padding: 60px 48px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
-    gap: 1rem;
+    gap: 12px;
   }
+
   .not-found-code {
     font-size: 6rem;
     font-weight: 800;
+    font-family: var(--font-display);
     letter-spacing: -0.04em;
-    color: var(--border);
+    line-height: 1;
   }
-  .not-found p {
+
+  .not-found-card p {
     color: var(--text-secondary);
+    font-size: 1.1rem;
   }
-  .not-found a {
+
+  .back-link {
     margin-top: 1rem;
-    color: var(--accent);
+    color: var(--primary);
     font-size: 0.9rem;
+    padding: 8px 20px;
+    border-radius: 20px;
+    background: rgba(53, 191, 171, 0.08);
+    transition: background 0.2s;
+  }
+
+  .back-link:hover {
+    background: rgba(53, 191, 171, 0.15);
+    color: var(--primary);
   }
 </style>

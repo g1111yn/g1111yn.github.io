@@ -1,0 +1,203 @@
+---
+// Nav.astro - Top navigation bar
+const base = import.meta.env.BASE_URL;
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { label: 'Blog', href: `${base}blog/` },
+  { label: 'About', href: `${base}about/` },
+];
+---
+
+<header class="nav-bar">
+  <a href={base} class="nav-logo">
+    <img src={`${base}photo.PNG`} alt="avatar" class="nav-avatar" />
+    <span class="nav-logo-text">Yinan</span>
+  </a>
+
+  <nav class="nav-right">
+    {navItems.map((item, i) => (
+      <>
+        <a
+          href={item.href}
+          class:list={['nav-link', { active: currentPath.startsWith(item.href) }]}
+        >
+          {item.label}
+        </a>
+        <span class="nav-divider" aria-hidden="true"></span>
+      </>
+    ))}
+
+    <button class="theme-btn" id="theme-toggle" title="Toggle theme" aria-label="Toggle dark mode">
+      <svg class="theme-icon icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2"/><path d="M12 20v2"/>
+        <path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/>
+        <path d="M2 12h2"/><path d="M20 12h2"/>
+        <path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
+      </svg>
+      <svg class="theme-icon icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<style>
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    transition: background 0.3s, border-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 28px;
+  }
+
+  /* ===== Left: Logo ===== */
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .nav-logo:hover {
+    color: var(--text);
+  }
+
+  .nav-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid rgba(53, 191, 171, 0.3);
+    transition: border-color 0.2s;
+  }
+
+  .nav-logo:hover .nav-avatar {
+    border-color: var(--primary);
+  }
+
+  .nav-logo-text {
+    font-size: 0.95rem;
+  }
+
+  /* ===== Right ===== */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .nav-link {
+    padding: 6px 14px;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover {
+    color: var(--primary);
+  }
+
+  .nav-link.active {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  /* Divider: tilted thin line */
+  .nav-divider {
+    display: block;
+    width: 1px;
+    height: 14px;
+    background: var(--text-secondary);
+    opacity: 0.2;
+    border-radius: 1px;
+    transform: rotate(18deg);
+    flex-shrink: 0;
+  }
+
+  /* ===== Theme Toggle ===== */
+  .theme-btn {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid transparent;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    color: var(--text-secondary);
+    margin-left: 4px;
+    transition: color 0.3s, border-color 0.3s, background 0.3s, transform 0.2s;
+  }
+
+  .theme-btn:hover {
+    color: var(--primary);
+    border-color: rgba(53, 191, 171, 0.3);
+    background: var(--nav-hover);
+  }
+
+  .theme-btn:active {
+    transform: scale(0.88) rotate(25deg);
+  }
+
+  .theme-icon {
+    position: absolute;
+    transition: opacity 0.35s, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Light mode: show moon, hide sun */
+  .icon-sun {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.4);
+  }
+  .icon-moon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+
+  /* Dark mode: show sun, hide moon */
+  :global(html.dark) .icon-sun {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+  :global(html.dark) .icon-moon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.4);
+  }
+
+  :global(html.dark) .theme-btn:hover {
+    color: #fbbf24;
+    border-color: rgba(251, 191, 36, 0.3);
+    background: rgba(251, 191, 36, 0.08);
+  }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 640px) {
+    .nav-bar {
+      padding: 0 16px;
+    }
+    .nav-logo-text {
+      font-size: 0.85rem;
+    }
+    .nav-link {
+      padding: 6px 10px;
+      font-size: 0.82rem;
+    }
+  }
+</style>

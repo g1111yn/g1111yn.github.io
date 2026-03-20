@@ -1,16 +1,70 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/home/Hero.astro';
-import TechStack from '../components/home/TechStack.astro';
-import LatestPosts from '../components/home/LatestPosts.astro';
-import ScrollReveal from '../components/ui/ScrollReveal.astro';
+import Card from '../components/Card.astro';
+import HiCard from '../components/home/HiCard.astro';
+import SocialButtons from '../components/home/SocialButtons.astro';
+import ArticleCard from '../components/home/ArticleCard.astro';
+import TechStackCard from '../components/home/TechStackCard.astro';
+import ContactCard from '../components/home/ContactCard.astro';
 ---
 <BaseLayout title="Home">
-  <Hero />
-  <ScrollReveal>
-    <TechStack />
-  </ScrollReveal>
-  <ScrollReveal>
-    <LatestPosts />
-  </ScrollReveal>
+  <div class="home-container">
+    <!-- Row 1: Hi Card -->
+    <Card order={0}>
+      <HiCard />
+    </Card>
+
+    <!-- Row 2: Social + Latest Article -->
+    <div class="home-row">
+      <Card order={1}>
+        <SocialButtons />
+      </Card>
+      <Card order={2} class="flex-1">
+        <ArticleCard />
+      </Card>
+    </div>
+
+    <!-- Row 3: Tech Stack + Contact -->
+    <div class="home-row">
+      <Card order={3} class="flex-1">
+        <TechStackCard />
+      </Card>
+      <Card order={4}>
+        <ContactCard />
+      </Card>
+    </div>
+  </div>
 </BaseLayout>
+
+<style>
+  .home-container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 24px 24px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .home-row {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .home-row :global(.flex-1),
+  .home-container > :global(.flex-1) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 640px) {
+    .home-container {
+      padding: 16px 16px 40px;
+    }
+
+    .home-row {
+      flex-direction: column;
+    }
+  }
+</style>
